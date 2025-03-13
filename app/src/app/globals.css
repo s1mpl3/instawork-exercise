@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  @apply text-base;
+}
+
+h1 {
+  @apply text-2xl font-bold py-4;
+}
+
+h2 {
+  @apply text-xl font-semibold py-3;
+}
+
+h3 {
+  @apply text-lg font-medium py-2;
+}
+
+ul {
+  @apply list-disc pl-5 m-2;
+}
+
+.link {
+  @apply text-blue-500 hover:text-blue-700 cursor-pointer;
+}
+
+.button {
+  @apply bg-blue-500 text-white font-semibold text-sm py-1 px-4 rounded mr-2 cursor-pointer hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed;
+}
+
+.button_reset {
+  @apply bg-slate-400 text-white font-semibold text-sm py-1 px-4 rounded mr-2 cursor-pointer hover:bg-slate-600;
+}
+
+.button_delete {
+  @apply bg-red-500 text-white font-semibold text-sm py-1 px-4 rounded mr-2 cursor-pointer hover:bg-red-700;
+}
+
+.flex_row_between {
+  @apply flex flex-row justify-between items-center;
+}
+
+.flex_row {
+  @apply flex flex-row items-center;
+}
+
+.field-border {
+  @apply border border-gray-300 rounded-md p-2 w-full mb-2;
+}
