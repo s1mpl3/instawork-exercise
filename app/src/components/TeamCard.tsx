@@ -8,7 +8,7 @@ export default function TeamCard({ team, onSelect, onAdd }: {
     onAdd: () => void 
 }) {
     return (
-        <div className="p-4 border-1 rounded-lg">
+        <div className="p-4 border-1 rounded-lg max-w-[1000px]">
             <div className="flex_row_between">
                 <div>
                     <h1>Team: {team.name}</h1>

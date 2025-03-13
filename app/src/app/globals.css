@@ -36,7 +36,7 @@ h2 {
 }
 
 h3 {
-  @apply text-lg font-medium py-2;
+  @apply text-lg font-semibold py-2;
 }
 
 ul {

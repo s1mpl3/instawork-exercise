@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { type TeamMember, type Role } from "@/types/index";
 import { saveMember, deleteTeamMember, createTeamMember } from "@/app/actions";
-import Link from "next/link";
+
 
 interface FormData {
     first_name: string;
@@ -29,7 +29,7 @@ const TeamMemberDetails = ({ member, teamId, roles, onSave, onClose }: TeamMembe
         last_name: member?.member.last_name ?? '',
         email: member?.member.email ?? '',
         phone_number: member?.member.phone_number ?? '',
-        role: member?.role.id ?? roles[0]?.id ?? 0,
+        role: member?.role.id ?? roles?.find(r=>r.code =='REGULAR').id ?? 2,
     }), [member, roles]);
 
     const [data, setData] = useState<FormData>(initialData);
@@ -108,7 +108,7 @@ const TeamMemberDetails = ({ member, teamId, roles, onSave, onClose }: TeamMembe
     };
 
     return (
-        <div className="p-4 border-1 rounded-lg min-w-[320px] ">
+        <div className="p-4 border-1 rounded-lg min-w-[320px] max-w-[800px]">
             <div className="flex_row_between">
                 <h1>{isNewMember ? 'Add New Member' : 'Edit Member'}</h1>
                 <div onClick={onClose} className="link">
@@ -116,7 +116,7 @@ const TeamMemberDetails = ({ member, teamId, roles, onSave, onClose }: TeamMembe
                 </div>
             </div>
 
-            <div className="grid gap-4 border-t-1 border-gray-300 mt-4 pt-4">
+            <div className="grid gap-4 border-t-1 border-gray-300 mt-4 pt-4 ">
                 <form onSubmit={handleSubmit}>
                     <div className="grid gap-4">
                         <div className="grid gap-2">

@@ -1,6 +1,5 @@
 "use client";
 
-
 import { type Team } from "@/types";
 import TeamList from "@/components/TeamList";
 import { useEffect, useState } from "react";
@@ -16,7 +15,7 @@ export default function PageTeams() {
                 const fetchedTeams = await getTeams();
                 setTeams(fetchedTeams);
                 setError(null); // Clear any previous errors
-            } catch (err) {
+            } catch {
                 setError('Failed to fetch teams');
             }
         }
