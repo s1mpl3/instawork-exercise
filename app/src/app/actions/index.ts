@@ -17,7 +17,7 @@ type Method = 'GET' | 'POST' | 'PATCH' | 'DELETE'
 const remoteApi = (
     name: RouteName,
     method: Method,
-    params: Record<string, any>,
+    params: Record<string, unknown>,
     id?: string | number
 ): Promise<Response> => {
     let endpoint = `${base_url}${routes[name]}`;
@@ -60,7 +60,7 @@ export async function getRoles(): Promise<Role[]> {
     return response.json();
 }
 /* TODO move to use remoteApi  */
-export async function saveMember(id: string, data: UpdateMemberData): Promise<any> {
+export async function saveMember(id: string, data: UpdateMemberData): Promise<TeamMember> {
     const response = await fetch(`${base_url}${routes.teamMembers}/${id}/`, {
         method: 'PATCH',
         headers: {

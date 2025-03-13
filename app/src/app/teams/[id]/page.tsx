@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { Team, TeamMember, Role } from "@/types";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { getTeamDetails, getRoles } from "@/app/actions";
 import Link from "next/link";
 import TeamCard from "@/components/TeamCard";
@@ -16,7 +16,7 @@ export default function TeamDetailsPage() {
     const [team, setTeam] = useState<Team | null>(null);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchTeamDetails = async () => {
+    const fetchTeamDetails = useCallback(async () => {
         try {
             const teamDetails = await getTeamDetails(id as string);
             setTeam(teamDetails);
@@ -24,7 +24,7 @@ export default function TeamDetailsPage() {
         } catch {
             setError('Failed to fetch team details');
         }
-    };
+    }, [id]);
 
     useEffect(() => {
         const fetchRoles = async () => {
@@ -37,7 +37,7 @@ export default function TeamDetailsPage() {
         
         fetchRoles();
         fetchTeamDetails();
-    }, [id]);
+    }, [id, fetchTeamDetails]);
 
     const handleCloseForm = async () => {
         console.log('Closing form');

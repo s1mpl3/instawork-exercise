@@ -29,7 +29,7 @@ const TeamMemberDetails = ({ member, teamId, roles, onSave, onClose }: TeamMembe
         last_name: member?.member.last_name ?? '',
         email: member?.member.email ?? '',
         phone_number: member?.member.phone_number ?? '',
-        role: member?.role.id ?? roles?.find(r=>r.code =='REGULAR').id ?? 2,
+        role: member?.role.id ?? roles.find(r => r.code === 'REGULAR')?.id ?? 2,
     }), [member, roles]);
 
     const [data, setData] = useState<FormData>(initialData);
