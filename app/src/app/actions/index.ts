@@ -101,7 +101,10 @@ export async function createTeamMember(teamId: number, data: UpdateMemberData): 
     });
     
     if (!memberResponse.ok) {
-        console.log(memberResponse);
+        const errorData = await memberResponse.json();
+        if (memberResponse.status === 400 && 'email' in errorData) {
+            throw new Error('Email already in use');
+        }
         throw new Error('Failed to create member');
     }
     
